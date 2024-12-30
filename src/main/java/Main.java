@@ -19,7 +19,7 @@ class Rectangle {
     }
 }
 
-class sphere {
+class Sphere {
     double radius;
 
     public void setDimensions(double radius) {
@@ -31,8 +31,9 @@ class sphere {
     }
 }
 
-class cylindar {
+class Cylindar {
     double radius;
+    double height;
     
     public void setDimensions(double radius, double height) {
         this.radius = radius;
@@ -44,7 +45,7 @@ class cylindar {
     }
 }
 
-class cube {
+class Cube {
     double side;
 
     public void setDimensions(double side) {
@@ -55,8 +56,12 @@ class cube {
         return Math.pow(side, 3);
     }
 }
+
 public class Main {
-    public static void main(string [] args) {
+    private Main() {
+        // private constructor to hide the implicit public one
+    }
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -84,7 +89,8 @@ public class Main {
             if (sphereRadius < 0) {
                 System.out.println("Invalid radius. Please enter a positive value.");
             } else {
-                sphere sphere = new sphere(sphereRadius);
+                Sphere sphere = new Sphere();
+                sphere.setDimensions(sphereRadius);
                 double sphereVolume = sphere.getVolume();
                 System.out.println("Sphere Volume: " + sphereVolume);
             }
@@ -99,7 +105,8 @@ public class Main {
             if (cylindarRadius < 0 || cylindarHeight < 0) {
                 System.out.println("Invalid dimensions. Please enter positive values.");
             } else {
-                cylindar cylindar = new cylindar(cylindarRadius, cylindarHeight);
+                Cylindar cylindar = new Cylindar();
+                cylindar.setDimensions(cylindarRadius, cylindarHeight);
                 double cylindarVolume = cylindar.getVolume();
                 System.out.println("Cylindar Volume: " + cylindarVolume);
             }
@@ -111,17 +118,14 @@ public class Main {
 
             if (cubeSide < 0) {
                 System.out.println("Invalid side length. Please enter a positive value.");
-            } else {
-                cube cube = new cube(cubeSide);
+                Cube cube = new Cube();
+                cube.setDimensions(cubeSide);
                 double cubeVolume = cube.getVolume();
                 System.out.println("Cube Volume: " + cubeVolume);
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            } catch (Exception e) {
-                System.out.println("An error occurred. Please try again.");
             } finally {
-                scanner.close(); 
+                scanner.close();
             }
         }
     }
+       
